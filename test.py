@@ -1,4 +1,6 @@
 import cv2 as cv
+import numpy as np
+
 #Rescaling 
 #works for images, videos and live videos 
 def rescaleFrame(frame, scale=0.75):
@@ -26,7 +28,12 @@ while True:
     isTrue, frame = capture.read()
     #frame_resized = rescaleFrame(frame)
     #for showing single frame
-    cv.imshow('video', frame)
+    #gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+   # blur = cv.GaussianBlur(gray, (5,5),cv.BORDER_DEFAULT) 
+    #sketch = cv.medianBlur(gray,7)
+    canny = cv.Canny(frame,100,200)
+
+    cv.imshow('blur', canny)
    # cv.imshow('video resized', frame_resized )
     if cv.waitKey(20) & 0xFF==ord('d'):
         break

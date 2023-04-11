@@ -1,42 +1,12 @@
 import cv2 as cv
 import numpy as np
 
-#Rescaling 
-#works for images, videos and live videos 
-def rescaleFrame(frame, scale=0.75):
-    width = int(frame.shape[1] * scale)
-    height= int(frame.shape[0] * scale)
 
-    dimensions = (width, height)
+cat = cv.imread('cat.jpg')
+cat2 =cv.imread('cat - Copy.jpg')
 
-    return cv.resize(frame, dimensions, interpolation= cv.INTER_AREA)
+cv.imshow( 'cat', cat)
+cv.imshow( 'cat2', cat2)
 
-#reading videos
-#0,1,2... used for webcams
-capture = cv.VideoCapture(0)
-#a while loop is used to run the video frame by frame
+cv.waitKey(0)
 
-#only for live video
-def changeRes(width,height):
-    capture.set(3,width)
-    capture.set(4,height )
-
-if not capture.isOpened():
-    raise IOError("Cannot open webcam")
-
-while True:
-    isTrue, frame = capture.read()
-    #frame_resized = rescaleFrame(frame)
-    #for showing single frame
-    #gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-   # blur = cv.GaussianBlur(gray, (5,5),cv.BORDER_DEFAULT) 
-    #sketch = cv.medianBlur(gray,7)
-    canny = cv.Canny(frame,100,200)
-
-    cv.imshow('blur', canny)
-   # cv.imshow('video resized', frame_resized )
-    if cv.waitKey(20) & 0xFF==ord('d'):
-        break
-
-capture.release()
-cv.destroyAllWindows()

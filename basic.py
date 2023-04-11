@@ -32,7 +32,7 @@ resized_image = rescaleFrame(img, scale = 0.2)
 # eroded= cv.erode(dilated, (3,3), iterations=3)
 # cv.imshow('erod', eroded) 
 
-#resisze
+#resisz
 resized = cv.resize(img,(400,400), interpolation=cv.INTER_CUBIC)
 cv.imshow('res', resized)
 
